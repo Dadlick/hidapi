@@ -1,9 +1,11 @@
-## Description
+  Description
+===============
   Using the library to work with usb hid on Purebasic.
   Compiled libraries are in the path Purebasic\Lib...
   Sources Purebasic in the path Purebasic\...
       
-## What Does the API Look Like?
+   What Does the API Look Like?
+=================================
 
 The API provides the the most commonly used HID functions including sending
 and receiving of input, output, and feature reports.  The sample program,
@@ -34,7 +36,8 @@ simplicity):
      EndIf
   EndIf
       
-     ## HIDAPI library for Windows, Linux, FreeBSD and Mac OS X
+  HIDAPI library for Windows, Linux, FreeBSD and Mac OS X
+==========================================================
 
 About signal11
 ===============
