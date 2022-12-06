@@ -131,6 +131,18 @@ extern "C" {
 		*/
 		struct hid_device_info HID_API_EXPORT * HID_API_CALL hid_enumerate(unsigned short vendor_id, unsigned short product_id);
 
+		/** Function for Purebasic ----------->*/
+		char HID_API_EXPORT * HID_API_CALL hid_enum_path(struct hid_device_info *devs);
+		unsigned short HID_API_EXPORT HID_API_CALL hid_enum_vendor_id(struct hid_device_info *devs);
+		unsigned short HID_API_EXPORT HID_API_CALL hid_enum_product_id(struct hid_device_info *devs);
+		wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_serial_number(struct hid_device_info *devs);
+		unsigned short HID_API_EXPORT HID_API_CALL hid_enum_release_number(struct hid_device_info *devs);
+		wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_manufacturer_string(struct hid_device_info *devs);
+		wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_product_string(struct hid_device_info *devs);
+		struct hid_device_info HID_API_EXPORT * HID_API_CALL hid_enum_next(struct hid_device_info *devs);
+		int HID_API_EXPORT HID_API_CALL hid_wchart_size();
+		/** Function for Purebasic <-----------*/
+
 		/** @brief Free an enumeration Linked List
 
 		    This function frees a linked list created by hid_enumerate().
@@ -139,6 +151,7 @@ extern "C" {
 		    @param devs Pointer to a list of struct_device returned from
 		    	      hid_enumerate().
 		*/
+
 		void  HID_API_EXPORT HID_API_CALL hid_free_enumeration(struct hid_device_info *devs);
 
 		/** @brief Open a HID device using a Vendor ID (VID), Product ID
