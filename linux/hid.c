@@ -568,6 +568,66 @@ struct hid_device_info  HID_API_EXPORT *hid_enumerate(unsigned short vendor_id, 
 	return root;
 }
 
+char HID_API_EXPORT * HID_API_CALL hid_enum_path(struct hid_device_info *devs)
+{
+	char  *Ret = devs->path;
+		return Ret;
+}
+
+unsigned short HID_API_EXPORT HID_API_CALL hid_enum_vendor_id(struct hid_device_info *devs)
+{
+	unsigned short  Ret = devs->vendor_id;
+		return Ret;
+}
+
+unsigned short HID_API_EXPORT HID_API_CALL hid_enum_product_id(struct hid_device_info *devs)
+{
+	unsigned short  Ret = devs->product_id;
+		return Ret;
+}
+
+wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_serial_number(struct hid_device_info *devs)
+{
+	wchar_t  *Ret = devs->serial_number;
+		return Ret;
+}
+
+unsigned short HID_API_EXPORT HID_API_CALL hid_enum_release_number(struct hid_device_info *devs)
+{
+	unsigned short  Ret = devs->release_number;
+		return Ret;
+}
+
+
+wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_manufacturer_string(struct hid_device_info *devs)
+{
+	wchar_t  *Ret = devs->manufacturer_string;
+		return Ret;
+}
+
+wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_product_string(struct hid_device_info *devs)
+{
+	wchar_t  *Ret = devs->product_string;
+		return Ret;
+}
+
+struct hid_device_info HID_API_EXPORT * HID_API_CALL hid_enum_next(struct hid_device_info *devs)
+{
+	struct hid_device_info  *Ret = devs->next;
+		return Ret;
+}
+
+int HID_API_EXPORT HID_API_CALL hid_wchart_size()
+{
+	int size;
+
+	size = sizeof(wchar_t);
+
+	return size;
+}
+
+
+
 void  HID_API_EXPORT hid_free_enumeration(struct hid_device_info *devs)
 {
 	struct hid_device_info *d = devs;
@@ -582,7 +642,7 @@ void  HID_API_EXPORT hid_free_enumeration(struct hid_device_info *devs)
 	}
 }
 
-hid_device * hid_open(unsigned short vendor_id, unsigned short product_id, const wchar_t *serial_number)
+HID_API_EXPORT hid_device * HID_API_CALL hid_open(unsigned short vendor_id, unsigned short product_id, const wchar_t *serial_number)
 {
 	struct hid_device_info *devs, *cur_dev;
 	const char *path_to_open = NULL;
@@ -593,6 +653,8 @@ hid_device * hid_open(unsigned short vendor_id, unsigned short product_id, const
 	while (cur_dev) {
 		if (cur_dev->vendor_id == vendor_id &&
 		    cur_dev->product_id == product_id) {
+			path_to_open = cur_dev->path;
+			break;			
 			if (serial_number) {
 				if (wcscmp(serial_number, cur_dev->serial_number) == 0) {
 					path_to_open = cur_dev->path;
@@ -616,6 +678,7 @@ hid_device * hid_open(unsigned short vendor_id, unsigned short product_id, const
 
 	return handle;
 }
+
 
 hid_device * HID_API_EXPORT hid_open_path(const char *path)
 {
