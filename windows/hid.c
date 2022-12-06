@@ -499,6 +499,64 @@ cont:
 
 }
 
+char HID_API_EXPORT * HID_API_CALL hid_enum_path(struct hid_device_info *devs)
+{
+	char  *Ret = devs->path;
+		return Ret;
+}
+
+unsigned short HID_API_EXPORT HID_API_CALL hid_enum_vendor_id(struct hid_device_info *devs)
+{
+	unsigned short  *Ret = devs->vendor_id;
+		return Ret;
+}
+
+unsigned short HID_API_EXPORT HID_API_CALL hid_enum_product_id(struct hid_device_info *devs)
+{
+	unsigned short  *Ret = devs->product_id;
+		return Ret;
+}
+
+wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_serial_number(struct hid_device_info *devs)
+{
+	wchar_t  *Ret = devs->serial_number;
+		return Ret;
+}
+
+unsigned short HID_API_EXPORT HID_API_CALL hid_enum_release_number(struct hid_device_info *devs)
+{
+	unsigned short  *Ret = devs->release_number;
+		return Ret;
+}
+
+
+wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_manufacturer_string(struct hid_device_info *devs)
+{
+	wchar_t  *Ret = devs->manufacturer_string;
+		return Ret;
+}
+
+wchar_t HID_API_EXPORT * HID_API_CALL hid_enum_product_string(struct hid_device_info *devs)
+{
+	wchar_t  *Ret = devs->product_string;
+		return Ret;
+}
+
+struct hid_device_info HID_API_EXPORT * HID_API_CALL hid_enum_next(struct hid_device_info *devs)
+{
+	struct hid_device_info  *Ret = devs->next;
+		return Ret;
+}
+
+int HID_API_EXPORT HID_API_CALL hid_wchart_size()
+{
+	int size;
+
+	size = sizeof(wchar_t);
+
+	return size;
+}
+
 void  HID_API_EXPORT HID_API_CALL hid_free_enumeration(struct hid_device_info *devs)
 {
 	/* TODO: Merge this with the Linux version. This function is platform-independent. */
@@ -513,6 +571,21 @@ void  HID_API_EXPORT HID_API_CALL hid_free_enumeration(struct hid_device_info *d
 		d = next;
 	}
 }
+
+struct hid_device_info HID_API_EXPORT * HID_API_CALL hid_manufacturer_string_enumeration(struct hid_device_info *devs)
+{
+	wchar_t *Ret;
+	struct hid_device_info *d = devs;
+
+
+
+
+	return d->next;
+
+
+}
+
+
 
 
 HID_API_EXPORT hid_device * HID_API_CALL hid_open(unsigned short vendor_id, unsigned short product_id, const wchar_t *serial_number)
