@@ -1,5 +1,40 @@
-         HIDAPI library for Windows, Linux, FreeBSD and Mac OS X
-        =========================================================
+## Description
+  Using the library to work with usb hid on Purebasic.
+  Compiled libraries are in the path Purebasic\Lib...
+  Sources Purebasic in the path Purebasic\...
+      
+## What Does the API Look Like?
+
+The API provides the the most commonly used HID functions including sending
+and receiving of input, output, and feature reports.  The sample program,
+which communicates with a heavily hacked up version of the Microchip USB
+Generic HID sample looks like this (with error checking removed for
+simplicity):
+
+*device = Hidapi_open(Vid, pid, #Null)               
+  If *device
+     Debug(Hidapi_manufacturer_string(*device))       
+     Debug(Hidapi_get_serial_number_string(*device))
+     Debug(Hidapi_error(*device))
+     Debug(Hidapi_get_indexed_string(*device))
+     Debug(Hidapi_get_product_string(*device))
+     
+     *outputByte = AllocateMemory(3)
+     PokeB(*outputByte, 0)
+     PokeB(*outputByte+1, 1)
+     PokeB(*outputByte+2, 0)
+     Hidapi_write(*device, *outputByte , 3)
+     
+     *InByte = AllocateMemory(64)
+     ReadByte = hid_read_timeout(*device,  *InByte, 64, 100)
+     If ReadByte > 0
+        Debug( PeekB(*InByte))
+        Debug( PeekB(*InByte+1))
+        Debug( PeekB(*InByte+2))
+     EndIf
+  EndIf
+      
+     ## HIDAPI library for Windows, Linux, FreeBSD and Mac OS X
 
 About signal11
 ===============
