@@ -1,8 +1,8 @@
          HIDAPI library for Windows, Linux, FreeBSD and Mac OS X
         =========================================================
 
-About
-======
+About signal11
+===============
 
 HIDAPI is a multi-platform library which allows an application to interface
 with USB and Bluetooth HID-Class devices on Windows, Linux, FreeBSD, and Mac
